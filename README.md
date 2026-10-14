@@ -6,6 +6,8 @@ This project demonstrates test-driven debugging using Python's `unittest` framew
 
 - `student_utils.py`: Contains functions to calculate the average of marks, check passing marks, and assign grades.
 - `test_student_utils.py`: Contains nine unit tests that verify the expected behaviour of these functions.
+- `bug_notes.md`: Documents the identified bugs, their causes, and fixes.
+- `audit.md`: Records the code review findings and suggestions for further testing.
 
 ## How to Run the Tests
 
@@ -23,8 +25,18 @@ python test_student_utils.py
 
 ## RED → FIX → GREEN
 
-- **RED:** The tests exposed incorrect average calculations, division by zero for a single mark, an incorrect passing boundary, and incorrect grade ordering.
-- **FIX:** The implementation was corrected without weakening or changing the test expectations.
-- **GREEN:** The same nine tests were run again, and all passed.
+**RED:** The initial tests identified bugs in average calculation, division by zero for a single mark, the passing-mark boundary, and grade ordering.
 
-This workflow demonstrates how unit tests can identify bugs and verify that corrections work as expected.
+**FIX:** The implementation in `student_utils.py` was corrected without changing the expected results in `test_student_utils.py`.
+
+**GREEN:** The same nine tests were run again, and all nine passed successfully.
+
+## Audit Findings and Future Improvements
+
+The code audit recommends adding tests for:
+
+- An empty marks list in `calculate_average`.
+- Grade boundary values such as 45, 60, and 90.
+- Additional edge cases to improve test coverage.
+
+The expected behaviour for an empty marks list should be decided before implementing that case.
